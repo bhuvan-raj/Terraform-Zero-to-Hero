@@ -148,4 +148,98 @@ A backend defines **where Terraform stores its state file**.
 * Created during `terraform init`
 
 ---
+Sure Bubu! Here's the `README.md` content that explains the `output` block in Terraform, written clearly for GitHub:
+
+---
+
+````markdown
+# 📤 Terraform Output Block
+
+This repo explains the purpose and usage of the **`output` block** in Terraform.
+
+---
+
+## 🔍 What is an Output Block?
+
+An `output` block in Terraform is used to **display values** after your infrastructure is provisioned. It helps you see important resource attributes like:
+
+- Public IPs of EC2 instances
+- Names of created buckets
+- IDs of subnets or VPCs
+
+---
+
+## 🎯 Why Use Output Blocks?
+
+- ✅ View useful resource info in the terminal
+- ✅ Share values between modules
+- ✅ Export outputs for use in automation or scripts
+
+---
+
+## 🧾 Syntax
+
+```hcl
+output "name" {
+  description = "Description of the output"
+  value       = <expression>
+  sensitive   = false  # optional
+}
+````
+
+---
+
+## 📘 Example
+
+```hcl
+output "instance_public_ip" {
+  description = "Public IP of the EC2 instance"
+  value       = aws_instance.my_instance.public_ip
+}
+```
+
+---
+
+## 🖥️ Output After `terraform apply`
+
+```
+Outputs:
+
+instance_public_ip = "3.91.24.77"
+```
+
+---
+
+## 📚 More Info
+
+* [Terraform Output Documentation](https://developer.hashicorp.com/terraform/language/values/outputs)
+
+
+## 📌 What Are Terraform Variables?
+
+Terraform **variables** are placeholders used to make your code **reusable**, **dynamic**, and **clean**. They allow you to:
+
+- Avoid hardcoding values
+- Easily change configurations across environments
+- Reuse modules and scripts with different inputs
+
+---
+
+## 📦 Why Use Variables?
+
+Using variables:
+- Makes your code modular
+- Helps in managing different environments (dev, staging, prod)
+- Makes automation easier (e.g., using CI/CD pipelines)
+
+---
+
+## 📁 Recommended File Structure
+
+.
+├── main.tf # Defines the actual resources (e.g., EC2, VPC)
+├── variables.tf # Declares all the input variables with type, description, etc.
+├── terraform.tfvars # Provides actual values for the declared variables
+├── outputs.tf (optional)# Defines outputs from the resources
+
 
