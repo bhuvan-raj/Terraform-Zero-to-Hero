@@ -147,17 +147,7 @@ A backend defines **where Terraform stores its state file**.
 * Ensures consistent and reproducible builds
 * Created during `terraform init`
 
----
-Sure Bubu! Here's the `README.md` content that explains the `output` block in Terraform, written clearly for GitHub:
-
----
-
-````markdown
 # 📤 Terraform Output Block
-
-This repo explains the purpose and usage of the **`output` block** in Terraform.
-
----
 
 ## 🔍 What is an Output Block?
 
