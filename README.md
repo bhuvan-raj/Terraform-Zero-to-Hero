@@ -226,9 +226,9 @@ Using variables:
 
 ## 📁 Recommended File Structure
 
-- main.tf # Defines the actual resources (e.g., EC2, VPC)
-- variables.tf # Declares all the input variables with type, description, etc.
-- terraform.tfvars # Provides actual values for the declared variables
-- outputs.tf (optional)# Defines outputs from the resources
+- main.tf     - Defines the actual resources (e.g., EC2, VPC)
+- variables.tf   - Declares all the input variables with type, description, etc.
+- terraform.tfvars -  Provides actual values for the declared variables
+- outputs.tf (optional)  -  Defines outputs from the resources
 
 
