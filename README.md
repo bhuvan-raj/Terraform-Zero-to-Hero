@@ -167,6 +167,27 @@ A backend defines **where Terraform stores its state file**.
 * Remote HTTP backends
 
 ---
+Explicit Local Backend
+
+```
+terraform {
+  backend "local" {
+    path = "terraform.tfstate"
+  }
+}
+```
+S3 Backend 
+```
+terraform {
+  backend "s3" {
+    bucket         = "my-terraform-state-bucket"  # Your S3 bucket name
+    key            = "env/dev/terraform.tfstate"  # Path inside the bucket
+    region         = "us-east-1"                  # Region of the bucket
+    dynamodb_table = "terraform-lock-table"       # Optional: for state locking
+    encrypt        = true                         # Enable SSE encryption
+  }
+}
+```
 
 ## 🧾 What is State File (`terraform.tfstate`)?
 
@@ -179,16 +200,15 @@ A backend defines **where Terraform stores its state file**.
 * **Remote state** – Stored in a remote backend (e.g., S3, Terraform Cloud)
 
 ---
-# 🛠️ Terraform Project: Using Data Block & State File Lock Explained
 
-## 📌 What is Terraform State File Lock?
+##  What is Terraform State File Lock?
 
 Terraform uses a file called `terraform.tfstate` to store the current state of your infrastructure.  
 When multiple people or systems run `terraform apply` at the same time, it can corrupt this state.
 
 To prevent this, **Terraform locks the state file** during operations like `plan` and `apply`.
 
-### 🔒 State Locking in Practice
+###  State Locking in Practice
 
 - When Terraform begins an operation, it **locks** the state.
 - If another process tries to make changes while it's locked, it will wait or fail.
@@ -207,6 +227,14 @@ A `data` block is used to **fetch or reference existing resources** in your clou
 You might have an existing VPC in AWS that was created manually or by another team. Instead of recreating it, you **reference it using a `data` block** and then build your resources (like subnets, EC2) inside it.
 
 ---
+```
+data "aws_vpc" "existing" {
+  filter {
+    name   = "tag:Name"
+    values = ["test-vpc"]  # Replace with the actual Name tag of your VPC
+  }
+}
+```
 
 
 # 📤 Terraform Output Block
