@@ -17,7 +17,7 @@ Infrastructure as Code is the practice of managing and provisioning infrastructu
 
 * **Terraform** (by HashiCorp) ✅
 * AWS CloudFormation
-* Ansible
+* Azure Resource Manager
 * Pulumi
 * Chef / Puppet
 
@@ -115,6 +115,45 @@ Enter AWS Access Key, Secret Key, Region, and Output format.
 * Updates the state file
 
 ---
+# terraform block
+* This block configures settings for Terraform itself.
+* You can specify the required Terraform version
+
+```
+terraform {
+  required_version = ">= 1.3.0"
+
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"  # Where to download the provider from
+      version = "~> 5.0"         # Acceptable version constraint
+    }
+  }
+}
+```
+# provider block
+* The provider block defines which cloud/service provider
+* Terraform should use, and how to connect to it.
+* You can configure region, credentials, and more.
+```
+provider "aws" {
+  region = "us-east-1"  # AWS region where resources will be created
+}
+```
+# resource block
+
+* A resource block defines the actual infrastructure to create.
+* It includes the resource type, a local name, and its properties.
+```
+resource "aws_instance" "example" {
+   ami_id = "ami-id"
+   instance_type = "instance-type"
+```
+## 🔐 What is `.terraform.lock.hcl`?
+
+* Locks the provider versions used in your project
+* Ensures consistent and reproducible builds
+* Created during `terraform init`
 
 ## 📁 What is Backend in Terraform?
 
@@ -140,12 +179,35 @@ A backend defines **where Terraform stores its state file**.
 * **Remote state** – Stored in a remote backend (e.g., S3, Terraform Cloud)
 
 ---
+# 🛠️ Terraform Project: Using Data Block & State File Lock Explained
 
-## 🔐 What is `.terraform.lock.hcl`?
+## 📌 What is Terraform State File Lock?
 
-* Locks the provider versions used in your project
-* Ensures consistent and reproducible builds
-* Created during `terraform init`
+Terraform uses a file called `terraform.tfstate` to store the current state of your infrastructure.  
+When multiple people or systems run `terraform apply` at the same time, it can corrupt this state.
+
+To prevent this, **Terraform locks the state file** during operations like `plan` and `apply`.
+
+### 🔒 State Locking in Practice
+
+- When Terraform begins an operation, it **locks** the state.
+- If another process tries to make changes while it's locked, it will wait or fail.
+- When the operation finishes, the lock is **released**.
+
+> If you're using **remote backends** like S3 with DynamoDB, the lock is managed automatically using DynamoDB as a lock table.
+
+---
+
+## 📌 What is a Data Block in Terraform?
+
+A `data` block is used to **fetch or reference existing resources** in your cloud account **without creating them**.
+
+### 🧠 Use Case
+
+You might have an existing VPC in AWS that was created manually or by another team. Instead of recreating it, you **reference it using a `data` block** and then build your resources (like subnets, EC2) inside it.
+
+---
+
 
 # 📤 Terraform Output Block
 
