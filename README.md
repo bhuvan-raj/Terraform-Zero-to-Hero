@@ -295,24 +295,52 @@ instance_public_ip = "3.91.24.77"
 * [Terraform Output Documentation](https://developer.hashicorp.com/terraform/language/values/outputs)
 
 
-## 📌 What Are Terraform Variables?
+## 🌐 What is Terraform Cloud?
 
-Terraform **variables** are placeholders used to make your code **reusable**, **dynamic**, and **clean**. They allow you to:
+**Terraform Cloud** is a managed service by HashiCorp that provides:
+- Remote **Terraform state management**
+- **Version control** integration (GitHub, GitLab, etc.)
+- **Team collaboration**
+- **Access controls**, **Policy as Code**, and **Audit logs**
 
-- Avoid hardcoding values
-- Easily change configurations across environments
-- Reuse modules and scripts with different inputs
+- Instead of running Terraform only on your laptop,
+you can use Terraform Cloud to:
 
----
+   - Save the plan & apply history
 
-## 📦 Why Use Variables?
+   - Share your setup with a team
 
-Using variables:
-- Makes your code modular
-- Helps in managing different environments (dev, staging, prod)
-- Makes automation easier (e.g., using CI/CD pipelines)
+   - Auto-deploy infra when you push code to GitHub
+ 
+# What is a Project in Terraform Cloud?
 
----
+In Terraform Cloud, a Project is a way to group related workspaces together.
+
+
+   -  Organize workspaces by application, team, or environment
+
+   -  Apply access controls and policies at the project level
+
+   -  Keep things clean and structured
+
+# Terraform Workspace
+
+A Terraform Workspace is an isolated environment in Terraform that keeps a separate state file for each environment (like dev, stage, prod), using the same Terraform code.
+
+🧠 Think of it like:
+
+  One codebase, but
+
+  Different environments, each with their own infrastructure
+
+
+📦 In Terraform Cloud, Each workspace consists its own :
+
+  - State file
+
+  - Terraform run history
+
+  - Set of variables
 
 ## 📁 Recommended File Structure
 
