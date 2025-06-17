@@ -19,7 +19,6 @@ Infrastructure as Code is the practice of managing and provisioning infrastructu
 * AWS CloudFormation
 * Azure Resource Manager
 * Pulumi
-* Chef / Puppet
 
 ## 🌍 What is Terraform?
 
