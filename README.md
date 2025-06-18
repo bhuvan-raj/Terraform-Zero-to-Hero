@@ -368,5 +368,90 @@ Enables scenarios like:
 You can replicate the same architecture in different cloud environments easily by just switching providers or aliases.
 
 ---
+# 🔐 Secret Management in Terraform
+
+Terraform often interacts with cloud providers and services that require sensitive credentials such as API keys, passwords, and tokens. Proper secret management is crucial to avoid exposing these credentials in source control or logs.
+
+---
+
+## ❓ What is Secret Management?
+
+**Secret Management** in Terraform refers to securely handling and storing sensitive data used during infrastructure provisioning — such as:
+
+- API keys
+- Database passwords
+- Access tokens
+- Private keys
+
+---
+
+## ⚠️ Why is it Important?
+
+- Terraform **stores secrets in plain text** inside the `.tfstate` file.
+- If mishandled, secrets can be **accidentally committed to Git** or **leaked in logs**.
+- Secure secret management helps ensure:
+  - 🔒 Data confidentiality
+  - ✅ Compliance with security standards
+  - 🛡️ Reduced risk of breaches
+
+---
+
+## ✅ Ways to Manage Secrets in Terraform
+
+### 1. Environment Variables
+
+Store secrets as environment variables in your shell or CI/CD pipeline.
+
+```bash
+export AWS_ACCESS_KEY_ID="AKIA..."
+export AWS_SECRET_ACCESS_KEY="SECRET"
+terraform apply
+```
+### 2. Sensitive Variables in Terraform
+Mark variables as sensitive in variables.tf:
+```
+variable "db_password" {
+  type      = string
+  sensitive = true
+}
+```
+Pass values via CLI, environment, or .tfvars file:
+```
+db_password = "mysecret"
+```
+Pros: Reduces exposure in terraform plan output
+Cons: Still saved in plain text inside terraform.tfstate
+
+### 4. External Secret Managers
+
+a) AWS Secrets Manager
+```
+data "aws_secretsmanager_secret_version" "example" {
+  secret_id = "my-db-secret"
+}
+```
+b) HashiCorp Vault
+
+Integrate Vault as a backend or external provider for retrieving secrets securely.
+
+ c) Azure Key Vault 
+
+ ```
+resource "azurerm_key_vault" "example" {
+  name                        = "bubukeyvault123"
+  location                    = azurerm_resource_group.example.location
+  resource_group_name         = azurerm_resource_group.example.name
+  sku_name                    = "standard"
+  tenant_id                   = data.azurerm_client_config.current.tenant_id
+  soft_delete_enabled         = true
+  purge_protection_enabled    = false
+}
+
+resource "azurerm_key_vault_secret" "example" {
+  name         = "my-secret"
+  value        = "SuperSecurePassword123!"
+  key_vault_id = azurerm_key_vault.example.id
+}
+```
 
 
