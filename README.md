@@ -426,9 +426,17 @@ Cons: Still saved in plain text inside terraform.tfstate
 
 a) AWS Secrets Manager
 ```
-data "aws_secretsmanager_secret_version" "example" {
-  secret_id = "my-db-secret"
+resource "aws_secretsmanager_secret" "ami_id_secret" {
+  name = "bubu-ami-id"
 }
+
+resource "aws_secretsmanager_secret_version" "ami_id_secret_version" {
+  secret_id     = aws_secretsmanager_secret.ami_id_secret.id
+  secret_string = jsonencode({
+    ami_id = aws_instance.example.ami
+  })
+}
+
 ```
 b) HashiCorp Vault
 
