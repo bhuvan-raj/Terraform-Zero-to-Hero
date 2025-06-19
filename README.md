@@ -432,6 +432,46 @@ Integrate Vault as a backend or external provider for retrieving secrets securel
 
  c) Azure Key Vault 
 
+# 🛡️ HashiCorp Vault with Terraform - Practical Demo
+
+## 📌 Objectives
+
+- Understand how Vault stores and manages secrets
+- Access Vault secrets using Terraform's `vault` provider
+- Use secrets in real-time to configure the AWS provider
+
+## 🚀 Step-by-Step Setup
+
+- 1️⃣ Start Vault in Dev Mode
+
+> ⚠️ Dev mode is for testing only.
+
+```bash
+vault server -dev
+```
+- Copy the Root Token shown in the terminal
+  
+# 2️⃣ Configure Vault CLI in a New Terminal
+
+```
+export VAULT_ADDR='http://127.0.0.1:8200'
+export VAULT_TOKEN='your-root-token-here'
+```
+- Test the Vault
+```
+vault status
+```
+# 3️⃣ Store a Secret in Vault
+
+```
+vault kv put secret/aws-creds access_key="demo-access" secret_key="demo-secret"
+
+```
+
+
+
+
+
 
 
 
