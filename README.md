@@ -425,41 +425,13 @@ Cons: Still saved in plain text inside terraform.tfstate
 ### 4. External Secret Managers
 
 a) AWS Secrets Manager
-```
-resource "aws_secretsmanager_secret" "ami_id_secret" {
-  name = "bubu-ami-id"
-}
 
-resource "aws_secretsmanager_secret_version" "ami_id_secret_version" {
-  secret_id     = aws_secretsmanager_secret.ami_id_secret.id
-  secret_string = jsonencode({
-    ami_id = aws_instance.example.ami
-  })
-}
-
-```
 b) HashiCorp Vault
 
 Integrate Vault as a backend or external provider for retrieving secrets securely.
 
  c) Azure Key Vault 
 
- ```
-resource "azurerm_key_vault" "example" {
-  name                        = "bubukeyvault123"
-  location                    = azurerm_resource_group.example.location
-  resource_group_name         = azurerm_resource_group.example.name
-  sku_name                    = "standard"
-  tenant_id                   = data.azurerm_client_config.current.tenant_id
-  soft_delete_enabled         = true
-  purge_protection_enabled    = false
-}
 
-resource "azurerm_key_vault_secret" "example" {
-  name         = "my-secret"
-  value        = "SuperSecurePassword123!"
-  key_vault_id = azurerm_key_vault.example.id
-}
-```
 
 
