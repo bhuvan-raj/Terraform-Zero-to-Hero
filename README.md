@@ -464,7 +464,7 @@ vault status
 # 3️⃣ Store a Secret in Vault
 
 ```
-vault kv put secret/aws-creds access_key="demo-access" secret_key="demo-secret"
+vault kv put secret/aws-creds access_key="your-access-key-id" secret_key="your-secret-key-id"
 
 ```
 
