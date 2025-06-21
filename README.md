@@ -467,9 +467,94 @@ vault status
 vault kv put secret/aws-creds access_key="your-access-key-id" secret_key="your-secret-key-id"
 
 ```
+## ✅ What is a Terraform Module?
+
+A **Terraform module** is a folder containing `.tf` files that group related infrastructure resources.
+
+Modules help you:
+- Avoid repeating the same code
+- Organize your Terraform project
+- Make infrastructure reusable and scalable
+
+---
+
+# 🧰 Use Cases of Terraform Modules
+
+| Use Case                        | Description                                                                                         |
+| ------------------------------- | --------------------------------------------------------------------------------------------------- |
+| ✅ **Reuse Infra Code**          | Reuse the same code for creating VPCs, EC2s, DBs, etc. in different environments (dev/staging/prod) |
+| ✅ **Standardize Resources**     | Enforce consistency across your team’s infrastructure                                               |
+| ✅ **Simplify Complex Projects** | Break big configurations into smaller, manageable parts                                             |
+| ✅ **Multi-Environment Setup**   | Deploy same infra in `us-east-1`, `ap-south-1`, etc., with different values                         |
+| ✅ **Team Collaboration**        | Share modules across projects and teams easily                                                      |
+| ✅ **Third-Party Integration**   | Use verified community modules from Terraform Registry                                              |
 
 
+# 🧱 Types of Terraform Modules
+Terraform has 2 core categories of modules and some subtypes based on where they come from:
 
+1️⃣ Root Module
+
+  - The main Terraform configuration you run (main.tf, variables.tf, etc.).
+
+  - Located in your working directory.
+
+  - Every Terraform project has one root module.
+
+    
+Example
+```
+project/
+├── main.tf         # Root module
+├── variables.tf
+└── outputs.tf
+```
+2️⃣ Child Module
+
+  - A module called from the root module (or from another module).
+  - Can be local or remote.
+  - Helps split infra into reusable parts.
+
+```
+module "vpc" {
+  source = "./modules/vpc"  # Child module
+}
+```
+
+📦 Based on Location of Child Modules
+
+a) Local Modules
+
+  - Located inside your own project directory.
+  - Source path is a folder.
+```
+module "vpc" {
+  source = "./modules/vpc"
+}
+```
+
+b) Remote Modules
+
+ - Downloaded from Terraform Registry, GitHub, Bitbucket, or private Git repos.
+
+🌐 Example – from Terraform Registry:
+```
+module "vpc" {
+  source  = "terraform-aws-modules/vpc/aws"
+  version = "3.19.0"
+}
+```
+📁 Example – from GitHub:
+```
+module "vpc" {
+  source = "git::https://github.com/bhuvan-raj/my-vpc-module.git"
+}
+```
+c) Published Modules (Reusable by Teams or Community)
+
+    Modules written, versioned, and shared in a central location (like Terraform Registry or private Git).
+
+    Often follow naming standards like terraform-<PROVIDER>-<NAME>.
 
 
 
