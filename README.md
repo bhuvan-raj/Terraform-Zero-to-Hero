@@ -552,9 +552,9 @@ module "vpc" {
 ```
 c) Published Modules (Reusable by Teams or Community)
 
-    Modules written, versioned, and shared in a central location (like Terraform Registry or private Git).
+  - Modules written, versioned, and shared in a central location (like Terraform Registry or private Git).
 
-    Often follow naming standards like terraform-<PROVIDER>-<NAME>.
+  - Often follow naming standards like terraform-<PROVIDER>-<NAME>.
 
 
 
