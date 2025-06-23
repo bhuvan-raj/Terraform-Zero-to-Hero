@@ -558,5 +558,135 @@ c) Published Modules (Reusable by Teams or Community)
 
 
 
+## count in Terraform
+
+# ✅ What is it?
+
+count is used to create multiple instances of a resource or module by simply specifying the number of copies you want to make.
+
+ Syntax:
+ ```
+ resource "aws_instance" "web" {
+  count         = 3
+  ami           = "ami-0abcd1234abcd5678"
+  instance_type = "t2.micro"
+}
+```
+This will create:
+
+  - aws_instance.web[0]
+
+  - aws_instance.web[1]
+
+  - aws_instance.web[2]
+
+# count.index
+
+Inside the block, you can use count.index to access the current index (starting from 0):
+```
+tags = {
+  Name = "server-${count.index}"
+}
+```
+# ✅ When to Use count:
+
+  - When you want to create N identical resources
+
+  - When iterating over a simple list
+
+  - When the order matters, not the names
+
+ ⚠️ Limitations of count:
+
+   - You access elements only by numeric index
+
+   - If the list order changes, Terraform might destroy and recreate resources
+
+   - No named reference — only index-based
+
+## for_each in Terraform
+
+# What is it?
+
+for_each is used to create multiple named instances of a resource or module using a map or set of strings. Each resource instance is identified by a key.
+
+Syntax with Map:
+```
+variable "servers" {
+  default = {
+    server1 = "t2.micro"
+    server2 = "t2.small"
+  }
+}
+
+resource "aws_instance" "web" {
+  for_each = var.servers
+
+  ami           = "ami-0abcd1234abcd5678"
+  instance_type = each.value
+
+  tags = {
+    Name = each.key
+  }
+}
+```
+This creates:
+
+  - aws_instance.web["server1"]
+
+  - aws_instance.web["server2"]
+
+
+each.key & each.value
+
+- each.key: Key from the map (e.g., "server1")
+
+- each.value: Value from the map (e.g., "t2.micro")
+
+# When to Use for_each:
+
+  - When dealing with named resources (map or set)
+
+  - When you want more control over identity (e.g., server1, server2)
+
+  - When you want to avoid re-creating everything on data structure change (safer than count)
+
+# Comparison between count and for_each
+
+| Feature            | `count`                       | `for_each`               |
+| ------------------ | ----------------------------- | ------------------------ |
+| Input Type         | Integer / List                | Map or Set               |
+| Accessing Elements | `count.index`                 | `each.key`, `each.value` |
+| Identifier Type    | Numeric Index                 | Named Key                |
+| Resource Address   | `resource[0]`                 | `resource["name"]`       |
+| Best For           | Simple duplication            | Unique named resources   |
+| Limitation         | Can cause resource recreation | Requires map/set input   |
+
+
+
+Best Practices:
+
+  Use count when:
+
+   - You need a fixed number of similar resources.
+
+   - You don’t care about naming each one uniquely.
+
+  Use for_each when:
+
+   - You want more readable & stable resource references.
+
+   - You are working with maps or sets.
+
+   - You want to avoid resource destruction when order changes.
+
+
+
+
+
+
+
+
+
 
 
