@@ -1,6 +1,12 @@
 # Terraform-IAC
 <img src="https://github.com/bhuvan-raj/Terraform-Zero-to-Hero/blob/main/hashicorp-terraform-banner.png" alt="Banner" />
+
+
+
 # 📘 Terraform + AWS: Introduction to Infrastructure as Code (IaC)
+
+
+<img src="https://github.com/bhuvan-raj/Terraform-Zero-to-Hero/blob/main/aws.png" alt="Banner" />
 
 ## 🔧 What is IaC (Infrastructure as Code)?
 
