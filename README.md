@@ -558,9 +558,9 @@ c) Published Modules (Reusable by Teams or Community)
 
 
 
-## count in Terraform
+# count in Terraform
 
-# ✅ What is it?
+## ✅ What is it?
 
 count is used to create multiple instances of a resource or module by simply specifying the number of copies you want to make.
 
@@ -580,7 +580,7 @@ This will create:
 
   - aws_instance.web[2]
 
-# count.index
+## count.index
 
 Inside the block, you can use count.index to access the current index (starting from 0):
 ```
@@ -588,7 +588,7 @@ tags = {
   Name = "server-${count.index}"
 }
 ```
-# ✅ When to Use count:
+## ✅ When to Use count:
 
   - When you want to create N identical resources
 
@@ -604,9 +604,9 @@ tags = {
 
    - No named reference — only index-based
 
-## for_each in Terraform
+# for_each in Terraform
 
-# What is it?
+## What is it?
 
 for_each is used to create multiple named instances of a resource or module using a map or set of strings. Each resource instance is identified by a key.
 
@@ -643,7 +643,7 @@ each.key & each.value
 
 - each.value: Value from the map (e.g., "t2.micro")
 
-# When to Use for_each:
+## When to Use for_each:
 
   - When dealing with named resources (map or set)
 
@@ -651,7 +651,7 @@ each.key & each.value
 
   - When you want to avoid re-creating everything on data structure change (safer than count)
 
-# Comparison between count and for_each
+## Comparison between count and for_each
 
 | Feature            | `count`                       | `for_each`               |
 | ------------------ | ----------------------------- | ------------------------ |
