@@ -1,4 +1,5 @@
 # Terraform-IAC
+<img src="https://github.com/bhuvan-raj/Linux-Proxy/blob/main/hashicorp-terraform-banner.png" alt="Banner" />
 # 📘 Terraform + AWS: Introduction to Infrastructure as Code (IaC)
 
 ## 🔧 What is IaC (Infrastructure as Code)?
