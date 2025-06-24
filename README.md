@@ -687,38 +687,58 @@ tags = {
 
 for_each is used to create multiple named instances of a resource or module using a map or set of strings. Each resource instance is identified by a key.
 
-Syntax with Map:
-```
-variable "servers" {
-  default = {
-    server1 = "t2.micro"
-    server2 = "t2.small"
-  }
-}
-
-resource "aws_instance" "web" {
-  for_each = var.servers
-
-  ami           = "ami-0abcd1234abcd5678"
-  instance_type = each.value
-
-  tags = {
-    Name = each.key
-  }
-}
-```
-This creates:
-
-  - aws_instance.web["server1"]
-
-  - aws_instance.web["server2"]
-
 
 each.key & each.value
 
 - each.key: Key from the map (e.g., "server1")
 
 - each.value: Value from the map (e.g., "t2.micro")
+
+## Without declaring variables (hardcoded example):
+
+```
+resource "aws_instance" "example" {
+  for_each = {
+    vm1 = "t2.micro"
+    vm2 = "t3.micro"
+  }
+
+  ami           = "ami-12345678"
+  instance_type = each.value
+  tags = {
+    Name = each.key
+  }
+}
+```
+Here for_each uses a local map directly. No variables used.
+
+
+
+### With variables (recommended for reusability):
+```
+variable "instances" {
+  type = map(string)
+  default = {
+    vm1 = "t2.micro"
+    vm2 = "t3.micro"
+  }
+}
+
+resource "aws_instance" "example" {
+  for_each = var.instances
+
+  ami           = "ami-12345678"
+  instance_type = each.value
+  tags = {
+    Name = each.key
+  }
+}
+
+```
+
+
+
+
 
 ## When to Use for_each:
 
@@ -727,6 +747,11 @@ each.key & each.value
   - When you want more control over identity (e.g., server1, server2)
 
   - When you want to avoid re-creating everything on data structure change (safer than count)
+
+
+
+
+
 
 ## Comparison between count and for_each
 
