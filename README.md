@@ -565,6 +565,76 @@ c) Published Modules (Reusable by Teams or Community)
 
 
 
+
+# 🛰️ Import Existing AWS EC2 Instance into Terraform
+
+
+
+###  Create the `main.tf` File
+
+```hcl
+provider "aws" {
+  region = "us-east-1"  
+}
+
+resource "aws_instance" "my_imported_instance" {
+  # Placeholder block for import
+}
+```
+
+###  Initialize Terraform
+
+```bash
+terraform init
+```
+
+---
+
+###  Import the Existing EC2 Instance
+
+```bash
+terraform import aws_instance.my_imported_instance i-0123456789abcdef0(instance_id)
+```
+
+
+###  View the Imported State
+
+```bash
+terraform show
+```
+
+```bash
+terraform show -no-color > instance_raw.tf
+```
+
+---
+
+
+
+###  Run `terraform plan`
+
+```bash
+terraform plan
+```
+
+You should see:
+
+```
+No changes. Infrastructure is up-to-date.
+```
+
+---
+
+
+## 🧩 Example Resources You Can Import
+
+```bash
+terraform import aws_s3_bucket.my_bucket my-existing-bucket
+terraform import aws_security_group.my_sg sg-0abc12345678def90
+terraform import aws_vpc.my_vpc vpc-0123456789abcdef0
+```
+
+
 # count in Terraform
 
 ## ✅ What is it?
