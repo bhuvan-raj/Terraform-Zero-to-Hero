@@ -863,5 +863,49 @@ resource "aws_instance" "example" {
 
 
 
+## 📖 What is `depends_on`?
 
+In Terraform, resources usually have **implicit dependencies**. For example, if Resource A uses an attribute from Resource B, Terraform knows to create B before A.
 
+However, sometimes you need to explicitly define dependencies. That’s where `depends_on` is used.
+
+```hcl
+resource "resource_type" "example" {
+  depends_on = [resource.resource_type.other]
+}
+```
+
+---
+
+## 🧠 Why Use `depends_on`?
+
+* To enforce creation/destruction **order** between resources
+* When Terraform **cannot automatically infer** a dependency
+* To avoid **race conditions** or failed builds
+
+---
+
+## 🧪 Simple Example: EC2 Instance that Depends on IAM Role
+
+```hcl
+resource "aws_iam_role" "example" {
+  name = "my-role"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [{
+      Effect = "Allow",
+      Principal = {
+        Service = "ec2.amazonaws.com"
+      },
+      Action = "sts:AssumeRole"
+    }]
+  })
+}
+
+resource "aws_instance" "web" {
+  ami           = "ami-0c55b159cbfafe1f0"
+  instance_type = "t2.micro"
+
+  depends_on = [aws_iam_role.example]
+}
+```
