@@ -783,6 +783,79 @@ Best Practices:
    - You want to avoid resource destruction when order changes.
 
 
+#  What is `lifecycle` in Terraform?
+
+The `lifecycle` block in a Terraform resource is used to customize specific behaviors related to:
+
+* Resource creation
+* Resource destruction
+* Ignoring changes to certain attributes
+
+It provides finer control over Terraform’s **default resource management behavior**.
+
+---
+
+## 🔍 Lifecycle Meta-Arguments
+
+## 1. `create_before_destroy`
+
+* Forces Terraform to create the **new resource before** destroying the old one.
+* Useful when destruction of a resource before replacement would cause **downtime** or **data loss**.
+
+```hcl
+resource "aws_instance" "example" {
+  ami           = "ami-123456"
+  instance_type = "t2.micro"
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+```
+
+### 2. `prevent_destroy`
+
+* Prevents Terraform from **accidentally destroying** a resource.
+* Apply will **fail** with an error if destruction is attempted.
+
+```hcl
+resource "aws_s3_bucket" "my_bucket" {
+  bucket = "my-important-bucket"
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+```
+
+### 3. `ignore_changes`
+
+* Tells Terraform to **ignore specific attribute changes**, even if they differ from the config.
+* Useful when values are managed **outside of Terraform**.
+
+```hcl
+resource "aws_instance" "example" {
+  ami           = "ami-123456"
+  instance_type = "t2.micro"
+  tags = {
+    Name = "MyEC2"
+  }
+
+  lifecycle {
+    ignore_changes = [
+      tags["Name"]
+    ]
+  }
+}
+```
+
+---
+
+## ⚠️ Best Practices
+
+* Use `prevent_destroy` for **critical infrastructure** like production databases or storage buckets.
+* Be cautious with `ignore_changes` — it can lead to **configuration drift**.
+* Prefer `create_before_destroy` when **downtime is not acceptable**.
 
 
 
