@@ -910,3 +910,57 @@ resource "aws_instance" "web" {
   depends_on = [aws_iam_role.example]
 }
 ```
+
+##  Terraform Taint & Untaint: Forcing Resource Recreation
+
+In some situations, you may want to **force Terraform to destroy and recreate** a resource even if its configuration hasn’t changed. This is where `terraform taint` and `terraform untaint` come in.
+
+---
+
+###  `terraform taint`
+
+Marks a specific resource as **tainted**, which means Terraform will destroy and recreate it during the next `terraform apply`.
+
+#### Use Case:
+
+* A resource is behaving unexpectedly (e.g., a faulty EC2 instance).
+* You want to recreate it from scratch without changing any code.
+
+#### Example:
+
+```bash
+terraform taint aws_instance.my_vm
+```
+
+> This will mark the `aws_instance.my_vm` resource for recreation.
+
+---
+
+### `terraform untaint`
+
+Removes the **tainted** status from a resource, canceling the planned recreation.
+
+####  Use Case:
+
+* You tainted a resource by mistake and want to keep it.
+* You fixed the issue manually and no longer need to recreate the resource.
+
+#### Example:
+
+```bash
+terraform untaint aws_instance.my_vm
+```
+
+> This will remove the taint mark from `aws_instance.my_vm`.
+
+---
+
+###Notes:
+
+* Tainting doesn’t immediately destroy the resource — it only flags it.
+* The actual destroy-and-recreate happens on the next `terraform apply`.
+* You can view the taint status by running:
+
+```bash
+terraform plan
+```
