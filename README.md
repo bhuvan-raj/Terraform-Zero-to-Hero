@@ -92,17 +92,18 @@ Enter AWS Access Key, Secret Key, Region, and Output format.
 
 ---
 
-## 🧱 Types of Terraform Configuration Blocks
+## 🧱 Types of Terraform Configuration Blocks (Your Given Order)
 
-| Block      | Purpose                                        |
-| ---------- | ---------------------------------------------- |
-| `provider` | Defines cloud provider details                 |
-| `resource` | Describes infrastructure to create             |
-| `variable` | Accepts dynamic input from user                |
-| `output`   | Displays values after apply                    |
-| `module`   | Groups reusable Terraform code                 |
-| `data`     | Reads existing external data                   |
-| `locals`   | Defines local variables within a configuration |
+| Block       | Purpose                                                                |
+| ----------- | ---------------------------------------------------------------------- |
+| `terraform` | Sets overall configuration like backend and required providers         |
+| `provider`  | Specifies the cloud or service provider details (e.g., AWS, Azure)     |
+| `resource`  | Defines infrastructure to be created (e.g., EC2, S3, VPC)              |
+| `variable`  | Accepts dynamic input values from users                                |
+| `backend`   | (Inside `terraform` block) Configures remote state storage             |
+| `output`    | Displays values after `terraform apply` (like IPs, URLs, IDs)          |
+| `module`    | Groups reusable Terraform code for cleaner and scalable configurations |
+| `lifecycle` | (Inside `resource` block) Controls create, update, and delete behavior |
 
 ---
 
