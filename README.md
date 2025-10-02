@@ -222,6 +222,66 @@ To prevent this, **Terraform locks the state file** during operations like `plan
 - When the operation finishes, the lock is **released**.
 
 > If you're using **remote backends** like S3 with DynamoDB, the lock is managed automatically using DynamoDB as a lock table.
+The most crucial part of setting up DynamoDB for Terraform state locking is ensuring the table has the correct **Partition Key** defined.
+
+### Console Steps to Create the DynamoDB Lock Table
+
+#### Step 1: Navigate to DynamoDB
+
+1.  In the AWS Management Console search bar, type `DynamoDB` and select the service.
+2.  In the DynamoDB console, navigate to **Tables**.
+
+#### Step 2: Create the Table
+
+1.  Click the orange **Create table** button.
+
+2.  Under **Table details**, configure the following:
+
+      * **Table name:** Choose a descriptive name. This name is what you will use in your Terraform backend configuration.
+
+          * **Example:** `terraform-state-lock`
+
+      * **Partition key:** This is the *most critical step*. The key name **must** be exactly:
+
+          * **Name:** `LockID`
+          * **Type:** Select **String**
+
+      * **Sort key:** Leave this field **blank**.
+
+3.  Under **Table settings** (for low-traffic lock tables):
+
+      * **Capacity mode:** Select **On-demand** (recommended for low-traffic, cost-effective usage). *Alternatively*, you can choose **Provisioned** and set Read/Write capacity to a low number (like 5 units each) if you prefer predictable costs.
+
+4.  **Tags (Optional but Recommended):**
+
+      * Click **Add new tag** and add a tag like `Name` with the value `TerraformStateLock`.
+
+5.  **Review and Create:**
+
+      * Review the settings to ensure the Table Name and the `LockID` **Partition key (String type)** are correct.
+      * Click the **Create table** button at the bottom.
+
+#### Step 3: Verification
+
+1.  After a minute or two, the table status should change from *Creating* to **Active**.
+2.  Click on the new table name (`terraform-state-lock`).
+3.  Under the **Details** tab, verify that the **Partition key** is listed as `LockID (String)`.
+
+### Next Step: Configure Terraform
+
+Once the table is **Active**, you can update your Terraform code with the remote S3 backend configuration, ensuring the `dynamodb_table` value matches the name you just created:
+
+```hcl
+terraform {
+  backend "s3" {
+    bucket         = "your-state-bucket-name"
+    key            = "path/to/your/statefile.tfstate"
+    region         = "us-east-1"
+    dynamodb_table = "terraform-state-lock"  # MUST match the table name you created
+    encrypt        = true
+  }
+}
+```
 
 ---
 
@@ -240,6 +300,95 @@ data "aws_vpc" "existing" {
     name   = "tag:Name"
     values = ["test-vpc"]  # Replace with the actual Name tag of your VPC
   }
+}
+```
+
+That is a comprehensive set of examples for filtering the `aws_vpc` data source.
+
+
+-----
+
+### Filtering by a Custom Tag
+
+```hcl
+data "aws_vpc" "by_custom_tag" {
+  filter {
+    name   = "tag:Environment"
+    values = ["staging"]
+  }
+}
+```
+
+### Filtering by CIDR Block
+
+```hcl
+data "aws_vpc" "by_cidr" {
+  filter {
+    name   = "cidr-block"
+    values = ["10.1.0.0/16"]
+  }
+}
+```
+
+### Filtering by State
+
+```hcl
+data "aws_vpc" "by_state" {
+  filter {
+    name   = "state"
+    values = ["available"]
+  }
+}
+```
+
+### Filtering for the Default VPC
+
+```hcl
+data "aws_vpc" "default" {
+  default = true
+}
+
+# NOTE: You can also use a filter block for this:
+/*
+data "aws_vpc" "default_filter" {
+  filter {
+    name   = "is-default"
+    values = ["true"]
+  }
+}
+*/
+```
+
+### Combining Filters (AND Logic)
+
+```hcl
+data "aws_vpc" "combined_filter" {
+  # Filter 1: VPC must have this tag
+  filter {
+    name   = "tag:Project"
+    values = ["backend"]
+  }
+
+  # Filter 2: AND the VPC must have this CIDR block
+  filter {
+    name   = "cidr-block"
+    values = ["10.5.0.0/16"]
+  }
+}
+```
+
+### Filtering by Tags (and Outputting the ID)
+
+```hcl
+data "aws_vpc" "by_name" {
+  filter {
+    name   = "tag:Name"            # The name of the tag key
+    values = ["production-vpc-1"]  # The value of the tag key
+  }
+}
+
+output "vpc_id_by_name" {
+  value = data.aws_vpc.by_name.id
 }
 ```
 
