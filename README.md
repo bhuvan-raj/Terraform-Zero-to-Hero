@@ -497,6 +497,192 @@ A Terraform Workspace is an isolated environment in Terraform that keeps a separ
   - Terraform run history
 
   - Set of variables
+    
+
+# Introduction to Terraform Variables**
+
+Variables in Terraform allow you to **parameterize your configurations**. Instead of hardcoding values (like AMI IDs, instance sizes, or region names), you can use variables to make your Terraform code **dynamic, reusable, and environment-agnostic**.
+
+Think of variables as **placeholders** that get their values at runtime.
+
+---
+
+## **2. Benefits of Using Variables**
+
+* **Reusability:** One configuration can be used in multiple environments (dev, staging, prod) just by changing variable values.
+* **Readability:** Makes configuration cleaner by avoiding hardcoded values.
+* **Security:** Sensitive information like passwords or API keys can be passed as variables instead of being hardcoded.
+* **Flexibility:** Easy to override values without editing Terraform code.
+
+---
+
+## **3. Types of Terraform Variables**
+
+Terraform supports different types of variables:
+
+### **a. String**
+
+Represents textual data.
+
+```hcl
+variable "region" {
+  description = "AWS region to deploy resources"
+  type        = string
+  default     = "us-east-1"
+}
+```
+
+### **b. Number**
+
+Represents numeric values.
+
+```hcl
+variable "instance_count" {
+  description = "Number of EC2 instances"
+  type        = number
+  default     = 2
+}
+```
+
+### **c. Boolean**
+
+Represents true/false values.
+
+```hcl
+variable "enable_monitoring" {
+  description = "Enable monitoring for EC2"
+  type        = bool
+  default     = true
+}
+```
+
+### **d. List (or Tuple)**
+
+Represents an ordered sequence of values.
+
+```hcl
+variable "availability_zones" {
+  description = "List of AZs to deploy"
+  type        = list(string)
+  default     = ["us-east-1a", "us-east-1b"]
+}
+```
+
+### **e. Map (or Object)**
+
+Represents key-value pairs.
+
+```hcl
+variable "tags" {
+  description = "Resource tags"
+  type        = map(string)
+  default     = {
+    Environment = "dev"
+    Owner       = "Bubu"
+  }
+}
+```
+
+---
+
+## How to Set Variable Values**
+
+Terraform variables can be set in **multiple ways**:
+
+### **a. Default Values**
+
+Use the `default` argument in variable block. Example:
+
+```hcl
+variable "instance_type" {
+  type    = string
+  default = "t2.micro"
+}
+```
+
+### **b. CLI Input**
+
+Use `-var` when running Terraform commands:
+
+```bash
+terraform apply -var="instance_type=t3.medium"
+```
+
+### **c. Variable Files (`.tfvars`)**
+
+Create a file, e.g., `terraform.tfvars` or `prod.tfvars`:
+
+```hcl
+region        = "us-west-2"
+instance_type = "t3.micro"
+```
+
+Apply with:
+
+```bash
+terraform apply -var-file="prod.tfvars"
+```
+
+
+### ** Prompt During Apply**
+
+If no default is set and no value is provided, Terraform will **prompt the user**:
+
+```hcl
+variable "project_name" {
+  description = "Name of the project"
+}
+```
+
+Terraform will ask:
+
+```
+Enter a value: 
+```
+
+---
+
+## ** Sensitive Variables**
+
+For sensitive information (passwords, API keys):
+
+```hcl
+variable "db_password" {
+  description = "The database password"
+  type        = string
+  sensitive   = true
+}
+```
+
+Sensitive variables will **not be shown in Terraform logs or outputs**.
+
+---
+
+## **7. Using Variables in Terraform Code**
+
+Variables are accessed using the `var` keyword:
+
+```hcl
+resource "aws_instance" "example" {
+  ami           = var.ami_id
+  instance_type = var.instance_type
+  tags          = var.tags
+}
+```
+
+---
+
+## **8. Best Practices**
+
+1. **Use `.tfvars` files** for environment-specific values.
+2. **Avoid hardcoding sensitive data**; use `sensitive = true` or a secret manager.
+3. **Provide defaults** where applicable to reduce prompts.
+4. **Use descriptive names** for clarity (`db_username` is better than `user`).
+5. **Validate variables** to prevent invalid inputs.
+6. **Consistent variable naming** across modules.
+
+---
+
 
 # 🌐 Multi-Provider Setup in Terraform
 
