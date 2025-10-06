@@ -499,7 +499,7 @@ A Terraform Workspace is an isolated environment in Terraform that keeps a separ
   - Set of variables
     
 
-# Introduction to Terraform Variables**
+# Introduction to Terraform Variables
 
 Variables in Terraform allow you to **parameterize your configurations**. Instead of hardcoding values (like AMI IDs, instance sizes, or region names), you can use variables to make your Terraform code **dynamic, reusable, and environment-agnostic**.
 
