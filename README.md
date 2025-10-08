@@ -834,6 +834,9 @@ Create a **policy** that allows read-only access to that path:
 path "secret/data/aws-creds" {
   capabilities = ["read"]
 }
+path "auth/token/create" {
+  capabilities = ["update"]
+}
 ```
 
 Apply the policy:
