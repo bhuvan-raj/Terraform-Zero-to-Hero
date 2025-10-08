@@ -785,29 +785,163 @@ Integrate Vault as a backend or external provider for retrieving secrets securel
 
 ## 🚀 Step-by-Step Setup
 
-- 1️⃣ Start Vault in Dev Mode
 
-> ⚠️ Dev mode is for testing only.
+# 🧱 Step 1: start the server
+
+Run this in your Vault CLI or terminal:
 
 ```bash
 vault server -dev
 ```
-- Copy the Root Token shown in the terminal
-  
-# 2️⃣ Configure Vault CLI in a New Terminal
+
+---
+
+# 🗝️ Step 2: Store AWS credentials in Vault
+
+
+
+```bash
+vault kv put secret/aws-creds access_key="YOUR_AWS_ACCESS_KEY_ID" secret_key="YOUR_AWS_SECRET_ACCESS_KEY"
+```
+
+To verify:
+
+```bash
+vault kv get secret/aws-creds
+```
+
+Expected output:
 
 ```
-export VAULT_ADDR='http://127.0.0.1:8200'
-export VAULT_TOKEN='your-root-token-here'
+====== Data ======
+Key          Value
+---          -----
+access_key   YOUR_AWS_ACCESS_KEY_ID
+secret_key   YOUR_AWS_SECRET_ACCESS_KEY
 ```
-- Test the Vault
-```
-vault status
-```
-# 3️⃣ Store a Secret in Vault
 
+---
+
+# 🔐 Step 3: Create a Vault token for Terraform
+
+Terraform needs a Vault token (with read access) to fetch secrets.
+
+Create a **policy** that allows read-only access to that path:
+
+**vault-policy.hcl**
+
+```hcl
+path "secret/data/aws-creds" {
+  capabilities = ["read"]
+}
 ```
-vault kv put secret/aws-creds access_key="your-access-key-id" secret_key="your-secret-key-id"
+
+Apply the policy:
+
+```bash
+vault policy write terraform-policy vault-policy.hcl
+```
+
+Create a token tied to that policy:
+
+```bash
+vault token create -policy=terraform-policy
+```
+
+Copy the `token` value — you’ll use it in Terraform as `VAULT_TOKEN`.
+
+---
+
+# 🏗️ Step 4: Configure Terraform to use Vault provider
+
+Create a Terraform file, e.g. **vault.tf**:
+
+```hcl
+terraform {
+  required_providers {
+    vault = {
+      source  = "hashicorp/vault"
+      version = "~> 3.0"
+    }
+  }
+}
+
+provider "vault" {
+  address = "http://127.0.0.1:8200"
+  token   = var.vault_token
+}
+```
+
+---
+
+# 🗃️ Step 5: Fetch secrets from Vault
+
+Now create a data block to read your AWS credentials:
+
+```hcl
+data "vault_kv_secret_v2" "aws_creds" {
+  mount = "secret"
+  name  = "aws-creds"
+}
+```
+
+---
+
+# 🧩 Step 6: Use those secrets in AWS provider
+
+Now you can inject the Vault values into the AWS provider configuration:
+
+```hcl
+provider "aws" {
+  region     = "ap-south-1"
+  access_key = data.vault_kv_secret_v2.aws_creds.data["access_key"]
+  secret_key = data.vault_kv_secret_v2.aws_creds.data["secret_key"]
+}
+```
+
+
+# 🧪 Step 8: Initialize and Apply
+
+```bash
+terraform init
+terraform plan
+terraform apply
+```
+
+Terraform will:
+
+1. Connect to Vault using your token
+2. Read `access_key` and `secret_key` from `secret/aws-creds`
+3. Use those creds to authenticate with AWS
+
+---
+
+# 🧠 Recap of Flow
+
+| Step | Action                   | Component       |
+| ---- | ------------------------ | --------------- |
+| 1    | Enable KV engine         | Vault           |
+| 2    | Store AWS creds          | Vault           |
+| 3    | Create policy & token    | Vault           |
+| 4    | Configure Vault provider | Terraform       |
+| 5    | Fetch secrets            | Terraform       |
+| 6    | Use in AWS provider      | Terraform       |
+| 7    | Apply Terraform plan     | Terraform + AWS |
+
+---
+
+# ⚠️ Best Practices
+
+✅ Never hardcode AWS credentials in `.tf` files
+✅ Use short-lived Vault tokens
+✅ Use **Vault Agent** or **AppRole Auth Method** for automation (next level)
+✅ Store your Vault address and token as environment variables
+
+---
+
+Would you like me to show you how to do the **AppRole authentication method** (so Terraform doesn’t need a static Vault token)?
+That’s the **production-grade setup**.
+
 
 ```
 ## ✅ What is a Terraform Module?
