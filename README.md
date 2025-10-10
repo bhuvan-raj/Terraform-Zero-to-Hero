@@ -946,7 +946,6 @@ Would you like me to show you how to do the **AppRole authentication method** (s
 That’s the **production-grade setup**.
 
 
-```
 ## ✅ What is a Terraform Module?
 
 A **Terraform module** is a folder containing `.tf` files that group related infrastructure resources.
