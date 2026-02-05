@@ -1,13 +1,6 @@
 # Terraform
 <img src="https://github.com/bhuvan-raj/Terraform-Zero-to-Hero/blob/main/hashicorp-terraform-banner.png" alt="Banner" />
 
-
-
-# 📘 Terraform + AWS: Introduction to Infrastructure as Code (IaC)
-
-
-<img src="https://github.com/bhuvan-raj/Terraform-Zero-to-Hero/blob/main/aws.png" alt="Banner" />
-
 ## 🔧 What is IaC (Infrastructure as Code)?
 
 Infrastructure as Code is the practice of managing and provisioning infrastructure using code instead of manual processes. It allows you to define, deploy, and manage infrastructure using configuration files.
@@ -40,6 +33,10 @@ Terraform is an open-source IaC tool developed by HashiCorp. It enables you to d
 * Modular and reusable
 
 ---
+# 📘 Terraform + AWS: Introduction to Infrastructure as Code (IaC)
+
+
+<img src="https://github.com/bhuvan-raj/Terraform-Zero-to-Hero/blob/main/aws.png" alt="Banner" />
 
 ## ⚙️ Setting Up Terraform with AWS
 
