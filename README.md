@@ -105,6 +105,11 @@ Before starting, you should have:
 * **Explore:** Navigate to [Provisioners in Terraform](./Provisioners%20in%20Terraform/)
 
 
+### 12. Terraform Dynamic Block
+
+* **Description:** This section explains Terraform dynamic blocks and how they are used to generate nested configuration blocks dynamically based on input variables or expressions. It covers the purpose and syntax of dynamic blocks, the use of `for_each` with lists and maps, conditional block creation, and common real-world use cases such as security group rules and policy definitions. The section also discusses limitations, readability considerations, and best practices for writing scalable and maintainable Terraform configurations.
+* **Explore:** Navigate to [Terraform Dynamic Block](./Terraform%20Dynamic%20Block/)
+
 
 ## 📖 Who Is This For?
 
