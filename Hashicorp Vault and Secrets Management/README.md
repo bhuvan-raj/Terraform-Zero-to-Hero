@@ -139,6 +139,161 @@ Using Vault with Terraform allows you to:
 
 ---
 
+## Official HashiCorp Vault Website
+
+🌐 **Vault Home Page**
+[https://developer.hashicorp.com/vault](https://developer.hashicorp.com/vault)
+
+📘 **Official Installation Documentation**
+[https://developer.hashicorp.com/vault/docs/install](https://developer.hashicorp.com/vault/docs/install)
+
+This is the **only recommended source** for Vault binaries and docs.
+
+---
+
+## Vault Installation Instructions
+
+### Option 1: Install Vault on Linux (Recommended for Labs)
+
+#### Step 1: Download Vault Binary
+
+Go to:
+[https://developer.hashicorp.com/vault/downloads](https://developer.hashicorp.com/vault/downloads)
+
+Choose:
+
+* OS: Linux
+* Architecture: `amd64` (most systems)
+
+Or use CLI:
+
+```bash
+wget https://releases.hashicorp.com/vault/1.15.5/vault_1.15.5_linux_amd64.zip
+```
+
+> Replace version if needed.
+
+---
+
+#### Step 2: Unzip and Install
+
+```bash
+unzip vault_1.15.5_linux_amd64.zip
+sudo mv vault /usr/local/bin/
+```
+
+---
+
+#### Step 3: Verify Installation
+
+```bash
+vault version
+```
+
+Expected output:
+
+```text
+Vault v1.x.x
+```
+
+---
+
+## Option 2: Install Vault Using Package Manager (Linux)
+
+### Ubuntu / Debian
+
+```bash
+sudo apt update
+sudo apt install -y wget gpg
+wget -O- https://apt.releases.hashicorp.com/gpg | \
+gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
+
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
+https://apt.releases.hashicorp.com $(lsb_release -cs) main" | \
+sudo tee /etc/apt/sources.list.d/hashicorp.list
+
+sudo apt update
+sudo apt install vault
+```
+
+---
+
+### RHEL / CentOS / Rocky / Alma
+
+```bash
+sudo yum install -y yum-utils
+sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+sudo yum install vault
+```
+
+---
+
+## Option 3: Install Vault on macOS
+
+### Using Homebrew
+
+```bash
+brew tap hashicorp/tap
+brew install hashicorp/tap/vault
+```
+
+Verify:
+
+```bash
+vault version
+```
+
+---
+
+## Option 4: Install Vault on Windows
+
+1. Download ZIP from:
+   [https://developer.hashicorp.com/vault/downloads](https://developer.hashicorp.com/vault/downloads)
+2. Extract `vault.exe`
+3. Add the folder to **System PATH**
+4. Verify in PowerShell:
+
+```powershell
+vault version
+```
+
+---
+
+## Start Vault (Lab / Dev Mode)
+
+Once installed, start Vault in dev mode:
+
+```bash
+vault server -dev
+```
+
+Then export environment variables:
+
+```bash
+export VAULT_ADDR="http://127.0.0.1:8200"
+export VAULT_TOKEN="root"
+```
+
+Vault is now ready for **Terraform integration**.
+
+---
+
+## Important Notes
+
+* `vault server -dev` is **ONLY for labs**
+* Dev mode:
+
+  * No persistence
+  * Auto-unsealed
+  * Root token enabled
+* Production setups require:
+
+  * Storage backend
+  * Unsealing
+  * Authentication methods
+
+---
+
 ## Vault + Terraform Integration (Lab Explanation)
 
 This lab uses:
