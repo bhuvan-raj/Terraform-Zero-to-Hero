@@ -31,6 +31,15 @@ Before starting, you should have:
 * Basic understanding of cloud concepts (recommended)
 
 ---
+Sure, Bubu. Here is the converted version, rewritten to focus on **Infrastructure as Code (IaC) and Terraform**, while keeping the same structure and clarity:
+
+---
+
+### 1. Introduction to Infrastructure as Code (IaC) and Terraform
+
+* **Description:** This section introduces the fundamentals of Infrastructure as Code (IaC), explaining what IaC is, why it is essential in modern DevOps practices, and how it differs from traditional manual infrastructure provisioning. It covers the core principles of declarative infrastructure, automation, consistency, and version control. The section also introduces Terraform as a widely used IaC tool, highlighting its role in provisioning and managing cloud and on-premises infrastructure in a scalable, repeatable, and provider-agnostic manner.
+* **Explore:** Navigate to [Introduction to IAC & Terraform](./Introduction%20to%20IAC%20&%20Terraform/) for detailed information.
+
 
 ## 📖 Who Is This For?
 
