@@ -92,6 +92,13 @@ Before starting, you should have:
 
 * **Description:** This section explains the Terraform `lifecycle` block and how it controls resource creation, update, and deletion behavior. It covers key lifecycle arguments such as `create_before_destroy`, `prevent_destroy`, `ignore_changes`, and `replace_triggered_by`, along with real-world use cases and best practices for managing critical infrastructure safely.
 * **Explore:** Navigate to [Lifecycle in Terraform](./Lifecycle%20in%20Terraform/)
+  
+
+### 11. Terraform Taint and Untaint
+
+* **Description:** This section explains Terraform’s `taint` and `untaint` commands and how they are used to control resource recreation without modifying configuration code. It covers scenarios where resources become unhealthy or drift from the expected state, how tainting marks a resource for forced replacement during the next `terraform apply`, and how untainting reverses this action. The section also discusses practical use cases, limitations, and best practices for safely managing resource lifecycle through state manipulation.
+* **Explore:** Navigate to [Terraform Taint and Untaint](./Terraform%20Taint%20and%20Untaint/)
+
 
 
 
