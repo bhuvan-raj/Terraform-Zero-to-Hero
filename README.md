@@ -68,7 +68,7 @@ Before starting, you should have:
 ### 6. HashiCorp Vault and Secrets Management
 
 * **Description:** This section explains the importance of secrets management in infrastructure automation and introduces HashiCorp Vault as a centralized solution for securely storing, accessing, and managing sensitive data. It covers core Vault concepts, common secret management patterns, and how Vault integrates with tools like Terraform to eliminate hardcoded credentials and improve security.
-* **Explore:** Navigate to [HashiCorp Vault and Secrets Management](./HashiCorp%20Vault%20and%20Secrets%20Management/)
+* **Explore:** Navigate to [HashiCorp Vault and Secrets Management](./Hashicorp%20Vault%20and%20Secrets%20Management/)
 
 
 
