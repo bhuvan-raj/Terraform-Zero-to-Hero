@@ -51,7 +51,7 @@ Before starting, you should have:
 ### 4. Terraform Data Block and Output Block
 
 * **Description:** This section explains how Terraform data blocks are used to read existing infrastructure and external information, and how output blocks expose important values after execution for verification, reuse, and module communication.
-* **Explore:** Navigate to [Terraform Data Block and Output Block](./Terraform%20Data%20Block%20and%20Output%20Block/) for detailed information.
+* **Explore:** Navigate to [Terraform Data Block and Output Block](./Terraform%20Data%20Block%20and%20Outputs%20Block/) for detailed information.
 
 ### 5. Terraform Cloud
 
