@@ -99,6 +99,10 @@ Before starting, you should have:
 * **Description:** This section explains Terraform’s `taint` and `untaint` commands and how they are used to control resource recreation without modifying configuration code. It covers scenarios where resources become unhealthy or drift from the expected state, how tainting marks a resource for forced replacement during the next `terraform apply`, and how untainting reverses this action. The section also discusses practical use cases, limitations, and best practices for safely managing resource lifecycle through state manipulation.
 * **Explore:** Navigate to [Terraform Taint and Untaint](./Terraform%20Taint%20and%20Untaint/)
 
+### 12. Provisioners in Terraform
+
+* **Description:** This section explains Terraform provisioners and their role in executing scripts and commands during resource creation or destruction. It covers different types of provisioners such as `local-exec`, `remote-exec`, and `file`, along with connection blocks, execution lifecycle, failure behavior, and destroy-time provisioners. The section also discusses when provisioners should be used, their limitations, and best practices, emphasizing Terraform’s infrastructure-first philosophy and recommending safer alternatives like cloud-init and configuration management tools.
+* **Explore:** Navigate to [Provisioners in Terraform](./Provisioners%20in%20Terraform/)
 
 
 
