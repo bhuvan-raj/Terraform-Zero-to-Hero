@@ -1,4 +1,8 @@
 # 🚀 Terraform Zero to Hero
+![Learning](https://img.shields.io/badge/Level-Beginner%20to%20Advanced-purple.svg)
+![Focus](https://img.shields.io/badge/Focus-DevOps-informational.svg)
+![Contributions](https://img.shields.io/badge/Contributions-Welcome-brightgreen.svg)
+
 <img src="https://github.com/bhuvan-raj/Terraform-Zero-to-Hero/blob/main/thz.png" alt="Banner" />
 A complete, hands-on guide to mastering **Terraform** from fundamentals to advanced, real-world Infrastructure as Code (IaC) implementations.
 
