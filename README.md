@@ -83,7 +83,7 @@ Before starting, you should have:
 * **Description:** This section explains how Terraform Import is used to bring existing infrastructure resources under Terraform management without recreating them. It covers common use cases, import workflows, limitations, and best practices for safely managing pre-existing resources using Terraform state.
 * **Explore:** Navigate to [Terraform Import](./Terraform%20Import/)
 
-### 9. Count and `for_each` Meta-Arguments
+### 9. `Count` and `for_each` Meta-Arguments
 
 * **Description:** This section explains how Terraform meta-arguments `count` and `for_each` are used to create and manage multiple resource instances dynamically. It covers their syntax, use cases, differences, and best practices for choosing the right approach when working with scalable and maintainable Terraform configurations.
 * **Explore:** Navigate to [Count and For_each Meta-Arguments](./Count%20and%20For_each%20MetaArguments/)
