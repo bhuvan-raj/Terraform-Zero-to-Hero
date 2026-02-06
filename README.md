@@ -31,15 +31,17 @@ Before starting, you should have:
 * Basic understanding of cloud concepts (recommended)
 
 ---
-Sure, Bubu. Here is the converted version, rewritten to focus on **Infrastructure as Code (IaC) and Terraform**, while keeping the same structure and clarity:
-
----
+# Table of Context
 
 ### 1. Introduction to Infrastructure as Code (IaC) and Terraform
 
 * **Description:** This section introduces the fundamentals of Infrastructure as Code (IaC), explaining what IaC is, why it is essential in modern DevOps practices, and how it differs from traditional manual infrastructure provisioning. It covers the core principles of declarative infrastructure, automation, consistency, and version control. The section also introduces Terraform as a widely used IaC tool, highlighting its role in provisioning and managing cloud and on-premises infrastructure in a scalable, repeatable, and provider-agnostic manner.
 * **Explore:** Navigate to [Introduction to IAC & Terraform](./Introduction%20to%20IAC%20&%20Terraform/) for detailed information.
 
+### 2. Terraform Commands, Providers, and Blocks
+
+* **Description:** This section provides a comprehensive overview of core Terraform concepts, focusing on essential Terraform commands, providers, and configuration blocks. It explains how Terraform commands such as `init`, `plan`, `apply`, and `destroy` are used to initialize projects, preview infrastructure changes, provision resources, and manage infrastructure lifecycles. The section also covers Terraform providers, detailing how Terraform interacts with different cloud and service platforms, and explains key configuration blocks—including the `terraform`, `provider`, and `resource` blocks—that form the foundation of every Terraform configuration.
+* **Explore:** Navigate to [Terraform Commands, Providers, and Blocks](./Terraform%20Commands,%20Providers%20and%20Blocks/) for detailed information.
 
 ## 📖 Who Is This For?
 
