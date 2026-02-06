@@ -71,10 +71,19 @@ Before starting, you should have:
 * **Explore:** Navigate to [HashiCorp Vault and Secrets Management](./Hashicorp%20Vault%20and%20Secrets%20Management/)
 
 
-### 6. Terraform Modules
+### 7. Terraform Modules
 
 * **Description:** This section explains Terraform modules and their role in organizing, reusing, and standardizing infrastructure code. It covers root and child modules, different types of modules based on their location, and demonstrates how modules help simplify complex Terraform projects, support multi-environment deployments, and enable team collaboration.
 * **Explore:** Navigate to [Terraform Modules](./Terraform%20Modules/)
+
+
+
+### 8. Terraform Import
+
+* **Description:** This section explains how Terraform Import is used to bring existing infrastructure resources under Terraform management without recreating them. It covers common use cases, import workflows, limitations, and best practices for safely managing pre-existing resources using Terraform state.
+* **Explore:** Navigate to [Terraform Import](./Terraform%20Import/)
+
+
 
 
 
