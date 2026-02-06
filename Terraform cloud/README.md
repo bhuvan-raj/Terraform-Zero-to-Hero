@@ -1,5 +1,7 @@
 
-# Terraform Cloud – In-Depth Notes
+# Terraform Cloud 
+<img src="https://github.com/bhuvan-raj/Terraform-Zero-to-Hero/blob/main/cloud.jpg" alt="Banner" />
+
 
 ## 1. What is Terraform Cloud?
 
