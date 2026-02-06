@@ -43,6 +43,12 @@ Before starting, you should have:
 * **Description:** This section provides a comprehensive overview of core Terraform concepts, focusing on essential Terraform commands, providers, and configuration blocks. It explains how Terraform commands such as `init`, `plan`, `apply`, and `destroy` are used to initialize projects, preview infrastructure changes, provision resources, and manage infrastructure lifecycles. The section also covers Terraform providers, detailing how Terraform interacts with different cloud and service platforms, and explains key configuration blocks—including the `terraform`, `provider`, and `resource` blocks—that form the foundation of every Terraform configuration.
 * **Explore:** Navigate to [Terraform Commands, Providers, and Blocks](./Terraform%20Commands,%20Providers%20and%20Blocks/) for detailed information.
 
+### 3. Statefile Management and Backends
+
+* **Description:** This section provides an in-depth understanding of Terraform statefile management and backend configurations. It explains what the Terraform statefile is, why it is critical for tracking real-world infrastructure, and how Terraform uses state to map resources, detect changes, and manage updates. The section also covers different types of state, state inspection and manipulation commands, and introduces Terraform backends, explaining how and where statefiles are stored. Emphasis is placed on managing state securely and reliably in collaborative environments using remote backends.
+* **Explore:** Navigate to [Statefile Management and Backends](./Statefile%20Management%20and%20Backends/) for detailed information.
+
+
 ## 📖 Who Is This For?
 
 * DevOps beginners
