@@ -71,8 +71,10 @@ Before starting, you should have:
 * **Explore:** Navigate to [HashiCorp Vault and Secrets Management](./Hashicorp%20Vault%20and%20Secrets%20Management/)
 
 
+### 6. Terraform Modules
 
-
+* **Description:** This section explains Terraform modules and their role in organizing, reusing, and standardizing infrastructure code. It covers root and child modules, different types of modules based on their location, and demonstrates how modules help simplify complex Terraform projects, support multi-environment deployments, and enable team collaboration.
+* **Explore:** Navigate to [Terraform Modules](./Terraform%20Modules/)
 
 
 
