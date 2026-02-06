@@ -1,5 +1,5 @@
 
-# Multi-Provider Setup in Terraform – In-Depth Notes
+# Multi-Provider Setup in Terraform 
 
 ## 1. What is a Multi-Provider Setup?
 
