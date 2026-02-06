@@ -107,7 +107,8 @@ This is the **recommended and professional approach**.
 
 ---
 
-# HashiCorp Vault (In-Depth)
+# HashiCorp Vault
+<img src="https://github.com/bhuvan-raj/Terraform-Zero-to-Hero/blob/main/vault.png" alt="Banner" />
 
 ## What is HashiCorp Vault?
 
