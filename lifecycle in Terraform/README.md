@@ -1,5 +1,5 @@
 
-# Terraform `lifecycle` Block – In-Depth Notes
+# Terraform `lifecycle` Block 
 
 ##  What is the Terraform `lifecycle` Block?
 
