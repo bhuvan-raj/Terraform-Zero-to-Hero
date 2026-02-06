@@ -1,4 +1,4 @@
-# Terraform Variables – In-Depth Notes
+# Terraform Variables 
 
 ## 1. What is a Terraform Variable?
 
