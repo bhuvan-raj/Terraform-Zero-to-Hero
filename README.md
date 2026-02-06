@@ -86,7 +86,7 @@ Before starting, you should have:
 ### 9. `Count` and `for_each` Meta-Arguments
 
 * **Description:** This section explains how Terraform meta-arguments `count` and `for_each` are used to create and manage multiple resource instances dynamically. It covers their syntax, use cases, differences, and best practices for choosing the right approach when working with scalable and maintainable Terraform configurations.
-* **Explore:** Navigate to [Count and For_each Meta-Arguments](./Count%20and%20For_each%20MetaArguments/)
+* **Explore:** Navigate to [Count and For_each Meta-Arguments](./Count%20and%20For_each%20MetaArguements/)
 
 
 
