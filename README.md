@@ -48,14 +48,15 @@ Before starting, you should have:
 * **Description:** This section provides an in-depth understanding of Terraform statefile management and backend configurations. It explains what the Terraform statefile is, why it is critical for tracking real-world infrastructure, and how Terraform uses state to map resources, detect changes, and manage updates. The section also covers different types of state, state inspection and manipulation commands, and introduces Terraform backends, explaining how and where statefiles are stored. Emphasis is placed on managing state securely and reliably in collaborative environments using remote backends.
 * **Explore:** Navigate to [Statefile Management and Backends](./Statefile%20Management%20and%20Backends/) for detailed information.
 
-Sure, Bubu. Here’s a **shortened and crisp** version of the description:
-
----
-
 ### 4. Terraform Data Block and Output Block
 
 * **Description:** This section explains how Terraform data blocks are used to read existing infrastructure and external information, and how output blocks expose important values after execution for verification, reuse, and module communication.
 * **Explore:** Navigate to [Terraform Data Block and Output Block](./Terraform%20Data%20Block%20and%20Output%20Block/) for detailed information.
+
+### 5. Terraform Cloud
+
+* **Description:** This section introduces Terraform Cloud and explains how it is used to manage Terraform runs, state, and collaboration in a centralized environment. It covers key concepts such as organizations, projects, and workspaces, and demonstrates how Terraform Cloud enables secure state storage, remote execution, and team-based infrastructure management.
+* **Explore:** Navigate to [Terraform Cloud](./Terraform%20Cloud/) for detailed information.
 
 
 
