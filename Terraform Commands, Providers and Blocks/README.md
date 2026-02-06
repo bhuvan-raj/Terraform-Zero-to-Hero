@@ -268,6 +268,8 @@ Alright, **Bubu** — let’s go deep and keep it **clean, interview-ready, and 
 ---
 
 # Terraform Providers
+<img src="https://github.com/bhuvan-raj/Terraform-Zero-to-Hero/blob/main/provider.png" alt="Banner" />
+
 
 A **Terraform provider** is a plugin that allows Terraform to interact with external APIs and services such as **AWS, Azure, GCP, Kubernetes, GitHub, Docker**, and many others.
 
