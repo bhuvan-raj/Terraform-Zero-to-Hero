@@ -62,7 +62,7 @@ Before starting, you should have:
 ### 5. Terraform Variables
 
 * **Description:** This section explains how Terraform variables are used to parameterize infrastructure configurations, enabling flexible, reusable, and environment-specific deployments. It covers different variable types, the variable block, and the various ways values can be assigned using defaults, variable files, environment variables, and command-line options.
-* **Explore:** Navigate to [Terraform Variables](./Terraform%20Variables/) for detailed information.
+* **Explore:** Navigate to [Terraform Variables](./Terraform-Variables/) for detailed information.
 
 
 
