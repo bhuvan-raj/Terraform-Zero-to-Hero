@@ -56,7 +56,7 @@ Before starting, you should have:
 ### 5. Terraform Cloud
 
 * **Description:** This section introduces Terraform Cloud and explains how it is used to manage Terraform runs, state, and collaboration in a centralized environment. It covers key concepts such as organizations, projects, and workspaces, and demonstrates how Terraform Cloud enables secure state storage, remote execution, and team-based infrastructure management.
-* **Explore:** Navigate to [Terraform Cloud](./Terraform%20Cloud/) for detailed information.
+* **Explore:** Navigate to [Terraform Cloud](./Terraform%20cloud/) for detailed information.
 
 
 ### 5. Terraform Variables
@@ -86,7 +86,7 @@ Before starting, you should have:
 ### 9. Count and `for_each` Meta-Arguments
 
 * **Description:** This section explains how Terraform meta-arguments `count` and `for_each` are used to create and manage multiple resource instances dynamically. It covers their syntax, use cases, differences, and best practices for choosing the right approach when working with scalable and maintainable Terraform configurations.
-* **Explore:** Navigate to [Count and For_each Meta-Arguments](./Count%20and%20For_each%20Meta-Arguments/)
+* **Explore:** Navigate to [Count and For_each Meta-Arguments](./Count%20and%20For_each%20MetaArguments/)
 
 
 
