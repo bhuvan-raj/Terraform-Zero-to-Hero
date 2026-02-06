@@ -1,5 +1,5 @@
 # 🚀 Terraform Zero to Hero
-
+<img src="https://github.com/bhuvan-raj/Terraform-Zero-to-Hero/blob/main/thz.png" alt="Banner" />
 A complete, hands-on guide to mastering **Terraform** from fundamentals to advanced, real-world Infrastructure as Code (IaC) implementations.
 
 This repository is designed to take you from **zero** knowledge of Terraform to confidently managing **production-grade cloud infrastructure** using best practices.
