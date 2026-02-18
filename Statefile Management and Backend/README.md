@@ -339,9 +339,6 @@ This rebuilds the state entry without recreating the resource.
 * Drift recovery involves apply, refresh, or import
 
 ---
-Perfect, **Bubu**. Below is the **extended in-depth note on Terraform backends**, with **clear, real-world examples of AWS S3 and Azure Blob Storage backends**, added cleanly at the end.
-
----
 
 # Terraform Backends – In-Depth Notes (with Examples)
 
