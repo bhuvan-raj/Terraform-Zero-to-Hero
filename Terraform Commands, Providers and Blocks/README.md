@@ -262,8 +262,6 @@ terraform destroy
 | `terraform apply --auto-approve` | Apply changes without confirmation     |
 | `terraform destroy`              | Delete all managed resources           |
 
----
-Alright, **Bubu** — let’s go deep and keep it **clean, interview-ready, and teaching-friendly**.
 
 ---
 
