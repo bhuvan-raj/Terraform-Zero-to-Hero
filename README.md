@@ -101,7 +101,7 @@ Before starting, you should have:
 ### 11. Terraform Taint and Untaint
 
 * **Description:** This section explains Terraform’s `taint` and `untaint` commands and how they are used to control resource recreation without modifying configuration code. It covers scenarios where resources become unhealthy or drift from the expected state, how tainting marks a resource for forced replacement during the next `terraform apply`, and how untainting reverses this action. The section also discusses practical use cases, limitations, and best practices for safely managing resource lifecycle through state manipulation.
-* **Explore:** Navigate to [Terraform Taint and Untaint](./Terraform%20Taint%20and%20Untaint/)
+* **Explore:** Navigate to [Terraform Taint and Untaint](./Terraform%20Taint%20and%20untaint/)
 
 ### 12. Provisioners in Terraform
 
