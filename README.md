@@ -114,6 +114,7 @@ Before starting, you should have:
 * **Description:** This section explains Terraform dynamic blocks and how they are used to generate nested configuration blocks dynamically based on input variables or expressions. It covers the purpose and syntax of dynamic blocks, the use of `for_each` with lists and maps, conditional block creation, and common real-world use cases such as security group rules and policy definitions. The section also discusses limitations, readability considerations, and best practices for writing scalable and maintainable Terraform configurations.
 * **Explore:** Navigate to [Terraform Dynamic Block](./Terraform%20Dynamic%20Block/)
 
+---
 
 ### Terraformer — Import Existing Infrastructure into Terraform
 <img src="https://github.com/bhuvan-raj/Kubernetes-EKS-FROM-SCRATCH/blob/main/assets/tf.png" width="220" alt="Kyverno" />
@@ -122,6 +123,7 @@ Terraformer helps **generate Terraform configuration from existing infrastructur
 
 📦 **[Terraformer →](https://github.com/bhuvan-raj/Terraform-Zero-to-Hero/tree/main/Terraformer)**
 
+---
 ## 📖 Who Is This For?
 
 * DevOps beginners
