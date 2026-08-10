@@ -115,6 +115,13 @@ Before starting, you should have:
 * **Explore:** Navigate to [Terraform Dynamic Block](./Terraform%20Dynamic%20Block/)
 
 
+### Terraformer — Import Existing Infrastructure into Terraform
+<img src="https://github.com/bhuvan-raj/Kubernetes-EKS-FROM-SCRATCH/blob/main/assets/tf.png" width="220" alt="Kyverno" />
+
+Terraformer helps **generate Terraform configuration from existing infrastructure** — making it easier to migrate manually created cloud resources into Infrastructure as Code and bring them under Terraform management.
+
+📦 **[Terraformer →](https://github.com/bhuvan-raj/Terraform-Zero-to-Hero/tree/main/Terraformer)**
+
 ## 📖 Who Is This For?
 
 * DevOps beginners
